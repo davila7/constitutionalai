@@ -42,13 +42,15 @@ def capture_and_display_output(func: Callable[..., Any], args, **kwargs) -> Any:
 def main():
     st.set_page_config(page_title="Consitutional AI", page_icon="🚀", layout="wide")
     st.title("Consitutional AI")
-
+    st.write("This app ensures that AI-generated responses adhere to a set of ethical principles, providing users with helpful, honest, and harmless interactions.")
+    st.markdown("Developed using: [Judini](https://judini.ai), [Langchain](https://python.langchain.com) and [CodeGPT](https://codegpt.co)")
 
     with st.sidebar:
-        user_secret = st.text_input(label = ":blue[OpenAI API key]",
+        user_secret = st.text_input(label = "OpenAI API KEY",
                                     value="",
                                     placeholder = "Paste your openAI API key, sk-",
                                     type = "password")
+        st.markdown("[Where can I get my api key?](https://www.codegpt.co/docs/tutorial-ai-providers/openai#openai-api)")
     
     form = st.form('CAI')
     question = form.text_input("Enter your question", "")
@@ -81,7 +83,7 @@ def main():
                     #st.info(constitutional_chain.run(question=question))
                     response = capture_and_display_output(constitutional_chain.run, question)
         else:
-            st.warning('API KEY is required')
+            st.warning('OPENAI API KEY is required. Open the sidebar and add your OpenAI API Key')
 
 if __name__ == "__main__":
     main()
